@@ -8,16 +8,16 @@ const bot = new SlackBot({
 
 // Start bot
 
-bot.openIm('start', () => {
+bot.on('start', () => {
     const params = {
-        icon_emojo: ':smiley:' 
+        icon_emoji: ':smiley:' 
     }
 
-    bot.postMessageToChannel('general', 'Get Ready To HAHA', params);
+    bot.postMessageToChannel('general', 'This is going to be funny...', params);
 });
 
 
-
+// error handle
 bot.on('error', (err) => console.log(err));
 
 
@@ -29,4 +29,20 @@ bot.on('message', (data) => {
     }
 
     console.log(data);
+    //handleMessage(data.text);
 });
+
+// repsonse to data 
+function handleMessage(message) {
+    if(message.includes(' chucknorris')) {
+        chuckJoke();
+    }
+}
+
+// tell chuck joke
+/* function chuckJoke(){
+    axious.get('http://api.icndb.com/jokes/random')
+    .then(res -> {
+        const joke = res.data.value.joke;
+    })
+}*/
